@@ -108,13 +108,13 @@ public class MS2 {
         double pagibigContribution = Math.min(grossSalary * 0.02, 100);
 
         // PhilHealth contribution calculation
-        double philhealthContribution = 0.0;
+      double philhealthContribution = 0.0;
         if (grossSalary <= 10000) {
-            philhealthContribution = 150.0;
+            philhealthContribution = 300.0 / 2; // 150.0
         } else if (grossSalary > 10000 && grossSalary <= 59999.99) {
-            philhealthContribution = 150.0 + (grossSalary - 10000) * 0.03;
-        } else {
-            philhealthContribution = 900;
+            philhealthContribution = (grossSalary * 0.03) / 2; // 3% of grossSalary, then divided by 2 for employee's share
+        } else if (grossSalary >= 60000) {
+            philhealthContribution = 1800.0 / 2; // 900.0
         }
 
         double sssContribution = 135.0;
