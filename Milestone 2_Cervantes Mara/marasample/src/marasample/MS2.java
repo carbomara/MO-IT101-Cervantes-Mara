@@ -1,42 +1,131 @@
 package marasample;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UpdatedMS2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Scanner scanner = new Scanner(System.in);
 
         // Arrays for employee details
-        String[] lastNames = {"Garcia", "Lim", "Aquino", "Reyes", "Hernandez","Villanueva","San Jose","Romualdez","Atienza","Alvaro"};
-        String[] firstNames = {"Manuel III", "Antonio", "Bianca Sofia", "Isabella", "Eduard","Andrea Mae", "Brad", "Alice", "Rosie", "Roderick"};
-        String[] birthdays = {"10/11/1983", "06/19/1988", "08/04/1989", "06/16/1994", "09/23/1989", "02/14/1988","03/15/1996","05/14/1992","09/24/1948","03/30/1988",};
-        String[] addresses = {
-                "Valero Carpark Building Valero Street",
-                "San Antonio De Padua 2, Block 1 Lot 1",
-                "Rm. 402 4/F Jiao Building Timog Ave",
-                "450 Solanda Street Intramuros 1006",
-                "National Highway, Gingog, Misamis",
-                "17/85 Stracke Via Suite 042, Poblacion, Las Piñas 4783 Dinagat Islands",
-                "99 Strosin Hills, Poblacion, Bislig 5340 Tawi-Tawi",
-                "12A/33 Upton Isle Apt. 420, Roxas City 1814 Surigao del Norte",
-                "90A Dibbert Terrace Apt. 190, San Lorenzo 6056 Davao del Norte",
-                "#284 T. Morato corner, Scout Rallos Street, Quezon City",
-        };
-        String[] phoneNumbers = {"966-860-270", "817-166-411", "866-898-370", "786-868-477", "088-861-012","918-621-603","797-009-261","983-606-799","266-036-427","053-381-386",};		
-        String[] positions = {"Chief Executive Officer","Chief Operating Officer","Chief Finance Officer","Chief Marketing Officer","IT Operations and Systems","HR Manager","HR Team Leader","HR Rank and File","HR Rank and File","Accounting Head"};		
-        double[] hourlyRates = {535.71, 357.14, 357.14, 357.14, 313.51, 313.51, 255.80, 133.93,133.93, 313.51 };  // Hourly rates for each employee
+        String[] lastNames = {
+        	    "Garcia", "Lim", "Aquino", "Reyes", "Hernandez", 
+        	    "Villanueva", "San Jose", "Romualdez", "Atienza", "Alvaro", 
+        	    "Salcedo", "Lopez", "Farala", "Martinez", "Romualdez", 
+        	    "Mata", "De Leon", "San Jose", "Rosario", "Bautista", 
+        	    "Lazaro", "Delos Santos", "Santos", "Del Rosario", "Tolentino", 
+        	    "Gutierrez", "Manalaysay", "Villegas", "Ramos", "Maceda", 
+        	    "Aguilar", "Castro", "Martinez", "Santos"
+        	};
+
+        	String[] firstNames = {
+        	    "Manuel III", "Antonio", "Bianca Sofia", "Isabella", "Eduard", 
+        	    "Andrea Mae", "Brad", "Alice", "Rosie", "Roderick", 
+        	    "Anthony", "Josie", "Martha", "Leila", "Fredrick", 
+        	    "Christian", "Selena", "Allison", "Cydney", "Mark", 
+        	    "Darlene", "Kolby", "Vella", "Tomas", "Jacklyn", 
+        	    "Percival", "Garfield", "Lizeth", "Carol", "Emelia", 
+        	    "Delia", "John Rafael", "Carlos Ian", "Beatriz"
+        	};
+
+        	String[] birthdays = {
+        	    "10/11/1983", "06/19/1988", "08/04/1989", "06/16/1994", "09/23/1989", 
+        	    "02/14/1988", "03/15/1996", "05/14/1992", "09/24/1948", "03/30/1988", 
+        	    "09/14/1993", "01/14/1987", "01/11/1942", "07/11/1970", "03/10/1985", 
+        	    "10/21/1987", "02/20/1975", "06/24/1986", "10/06/1996", "02/12/1991", 
+        	    "11/25/1985", "02/26/1980", "12/31/1983", "12/18/1978", "05/19/1984", 
+        	    "12/18/1970", "08/28/1986", "12/12/1981", "08/20/1978", "04/14/1973", 
+        	    "01/27/1989", "02/09/1992", "11/16/1990", "08/07/1990"
+        	};
+
+        	String[] addresses = {
+        	    "Valero Carpark Building Valero Street 1227, Makati City",
+        	    "San Antonio De Padua 2, Block 1 Lot 8 and 2, Dasmarinas, Cavite",
+        	    "Rm. 402 4/F Jiao Building Timog Avenue Cor. Quezon Avenue 1100, Quezon City",
+        	    "460 Solanda Street Intramuros 1000, Manila",
+        	    "National Highway, Gingoog, Misamis Occidental",
+        	    "17/85 Stracke Via Suite 042, Poblacion, Las Piñas 4783 Dinagat Islands",
+        	    "99 Strosin Hills, Poblacion, Bislig 5340 Tawi-Tawi",
+        	    "12A/33 Upton Isle Apt. 420, Roxas City 1814 Surigao del Norte",
+        	    "90A Dibbert Terrace Apt. 190, San Lorenzo 6056 Davao del Norte",
+        	    "#284 T. Morato corner, Scout Rallos Street, Quezon City",
+        	    "93/54 Shanahan Alley Apt. 183, Santo Tomas 1572 Masbate",
+        	    "49 Springs Apt. 266, Poblacion, Taguig 3200 Occidental Mindoro",
+        	    "42/25 Sawayn Stream, Ubay 1208 Zamboanga del Norte",
+        	    "37/46 Kulas Roads, Maragondon 0962 Quirino",
+        	    "22A/52 Lubowitz Meadows, Pililla 4895 Zambales",
+        	    "90 O'Keefe Spur Apt. 379, Catigbian 2772 Sulu",
+        	    "89A Armstrong Trace, Compostela 7874 Maguindanao",
+        	    "08 Grant Drive Suite 406, Poblacion, Iloilo City 9186 La Union",
+        	    "93A/21 Berge Points, Tapaz 2180 Quezon",
+        	    "65 Murphy Center Suite 094, Poblacion, Palayan 5636 Quirino",
+        	    "47A/94 Larkin Plaza Apt. 179, Poblacion, Caloocan 2751 Quirino",
+        	    "06A Gulgowski Extensions, Bongabon 6085 Zamboanga del Sur",
+        	    "99A Padberg Spring, Poblacion, Mabalacat 3959 Lanao del Sur",
+        	    "80A/48 Ledner Ridges, Poblacion, Kabankalan 8870 Marinduque",
+        	    "96/48 Watsica Flats Suite 734, Poblacion, Malolos 1844 Ifugao",
+        	    "58A Wilderman Walks, Poblacion, Digos 5822 Davao del Sur",
+        	    "60 Goyette Valley Suite 219, Poblacion, Tabuk 3159 Lanao del Sur",
+        	    "66/77 Mann Views, Luisiana 1263 Dinagat Islands",
+        	    "72/70 Stamm Spurs, Bustos 4550 Iloilo",
+        	    "50A/83 Bahringer Oval Suite 145, Kiamba 7688 Nueva Ecija",
+        	    "95 Cremin Junction, Surallah 2809 Cotabato",
+        	    "Hi-way, Yati, Liloan Cebu",
+        	    "Bulala, Camalaniugan",
+        	    "Agapita Building, Metro Manila"
+        	};
+
+        	String[] phoneNumbers = {
+        	    "966-860-270", "171-867-411", "966-889-370", "786-868-477", "088-861-012",
+        	    "918-621-603", "797-009-261", "983-606-799", "266-036-427", "053-381-386",
+        	    "070-766-300", "478-355-427", "329-034-366", "877-110-749", "023-079-009",
+        	    "783-776-744", "975-432-139", "179-075-129", "868-819-912", "683-725-348",
+        	    "740-721-558", "739-443-033", "955-879-269", "882-550-989", "675-757-366",
+        	    "512-899-876", "948-628-136", "332-372-215", "250-700-389", "973-358-041",
+        	    "529-705-439", "332-424-955", "078-854-208", "526-639-511"
+        	};
+
+        	String[] positions = {
+        	    "Chief Executive Officer", "Chief Operating Officer", "Chief Finance Officer", "Chief Marketing Officer", "IT Operations and Systems",
+        	    "HR Manager", "HR Team Leader", "HR Rank and File", "HR Rank and File", "Accounting Head",
+        	    "Payroll Manager", "Payroll Team Leader", "Payroll Rank and File", "Payroll Rank and File", "Account Manager",
+        	    "Account Team Leader", "Account Team Leader", "Account Rank and File", "Account Rank and File", "Account Rank and File",
+        	    "Account Rank and File", "Account Rank and File", "Account Rank and File", "Account Rank and File", "Account Rank and File",
+        	    "Account Rank and File", "Account Rank and File", "Account Rank and File", "Account Rank and File", "Account Rank and File",
+        	    "Account Rank and File", "Sales & Marketing", "Supply Chain and Logistics", "Customer Service and Relations"
+        	};
+
+        	double[] hourlyRates = {
+        	    535.71, 357.14, 357.14, 357.14, 313.51, 
+        	    313.51, 255.80, 133.93, 133.93, 313.51, 
+        	    302.53, 229.02, 142.86, 142.86, 318.45, 
+        	    255.80, 249.11, 133.93, 133.93, 138.39, 
+        	    138.39, 142.86, 133.93, 133.93, 142.86, 
+        	    147.32, 147.32, 142.86, 133.93, 133.93, 
+        	    133.93, 313.51, 313.51, 313.51
+        	};
 
         while (true) { // Loop to calculate salary for multiple employees
             // Prompt for employee ID
-            System.out.print("Enter employee ID (1-10): ");
-            int employeeID = scanner.nextInt();
-
-            // Validating the employee ID
-            if (employeeID < 1 || employeeID > 10) {
-                System.out.println("Invalid employee ID. Please enter a number between 1 and 10.");
-                continue; // Continue the loop if the input is invalid
+            int employeeID = 0;
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                	System.out.println("Welcome to the Salary Calculator!");
+                    System.out.print("Enter employee ID (1-34): ");
+                    employeeID = scanner.nextInt();
+                    if (employeeID < 1 || employeeID > 34) {
+                        System.out.println("Invalid employee ID. Please enter a number between 1 and 34.");
+                    } else {
+                        validInput = true;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scanner.next(); // Clear the invalid input
+                }
             }
 
             // Adjust for 0-based index arrays
@@ -51,8 +140,22 @@ public class UpdatedMS2 {
             System.out.println("Position: " + positions[index]);
 
             // Ask for the number of days worked in the month
-            System.out.print("Enter the number of days worked in the month: ");
-            int daysWorked = scanner.nextInt();
+            int daysWorked = 0;
+            validInput = false;
+            while (!validInput) {
+                try {
+                    System.out.print("Enter the number of days worked in the month: ");
+                    daysWorked = scanner.nextInt();
+                    if (daysWorked < 0) {
+                        System.out.println("Invalid input. Please enter a positive number.");
+                    } else {
+                        validInput = true;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scanner.next(); // Clear the invalid input
+                }
+            }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
             double totalHoursWorked = 0.0;
@@ -60,46 +163,52 @@ public class UpdatedMS2 {
             for (int day = 1; day <= daysWorked; day++) { // Loop through the days worked
                 System.out.println("\nDay " + day);
                 // Get login time
-                System.out.print("Enter login time (e.g., 08:00): ");
-                String loginTimeStr = scanner.next();
+                Date loginTime = null;
+                Date logoutTime = null;
+                while (loginTime == null) {
+                    System.out.print("Enter login time (e.g., 08:00): ");
+                    String loginTimeStr = scanner.next();
+                    try {
+                        loginTime = dateFormat.parse(loginTimeStr);
+                    } catch (ParseException e) {
+                        System.out.println("Error parsing time. Please enter time in the correct format (e.g., 08:00)");
+                    }
+                }
 
                 // Get logout time
-                System.out.print("Enter logout time (e.g., 17:00): ");
-                String logoutTimeStr = scanner.next();
-
-                try {
-                    Date loginTime = dateFormat.parse(loginTimeStr);
-                    Date logoutTime = dateFormat.parse(logoutTimeStr);
-
-                    // Calculate hours worked
-                    long diffInMillies = logoutTime.getTime() - loginTime.getTime();
-                    double hoursWorked = (double) diffInMillies / (60 * 60 * 1000);
-                    // Subtract 1 hour for unpaid lunch break
-                    hoursWorked -= 1.0;
-
-                    // Calculate late deductions
-                    int gracePeriodMins = 10;
-                    double lateDeductionPerHour = hourlyRates[index]; // Each hour late incurs the hourly rate as deduction
-                    double lateDeductions = 0.0;
-                    if (loginTime.getTime() > dateFormat.parse("08:10").getTime()) { // Beyond 8:10 is considered late
-                        lateDeductions = lateDeductionPerHour;
+                while (logoutTime == null) {
+                    System.out.print("Enter logout time (e.g., 17:00): ");
+                    String logoutTimeStr = scanner.next();
+                    try {
+                        logoutTime = dateFormat.parse(logoutTimeStr);
+                    } catch (ParseException e) {
+                        System.out.println("Error parsing time. Please enter time in the correct format (e.g., 17:00)");
                     }
-
-                    totalHoursWorked += hoursWorked;
-                    totalLateDeductions += lateDeductions;
-
-                    System.out.printf("Hours Worked: %.2f\n", hoursWorked);
-                    System.out.printf("Late Deduction/s: ₱%.2f\n", lateDeductions);
-
-                } catch (Exception e) {
-                    System.out.println("Error parsing time. Please enter time in the correct format (e.g., 08:00)");
-                    continue; // Continue the loop if there is an error
                 }
+
+                // Calculate hours worked
+                long diffInMillies = logoutTime.getTime() - loginTime.getTime();
+                double hoursWorked = (double) diffInMillies / (60 * 60 * 1000);
+                // Subtract 1 hour for unpaid lunch break
+                hoursWorked -= 1.0;
+
+                // Calculate late deductions
+                int gracePeriodMins = 10;
+                double lateDeductionPerHour = hourlyRates[index]; // Each hour late incurs the hourly rate as deduction
+                double lateDeductions = 0.0;
+                if (loginTime.getTime() > dateFormat.parse("08:10").getTime()) { // Beyond 8:10 is considered late
+                    lateDeductions = lateDeductionPerHour;
+                }
+
+                totalHoursWorked += hoursWorked;
+                totalLateDeductions += lateDeductions;
+
+                System.out.printf("Hours Worked: %.2f\n", hoursWorked);
+                System.out.printf("Late Deduction/s: ₱%.2f\n", lateDeductions);
             }
 
-            
-			// Calculate gross salary          
-            double grossSalary = hourlyRates[index]  * totalHoursWorked;
+            // Calculate gross salary
+            double grossSalary = hourlyRates[index] * totalHoursWorked;
 
             // Deduct late deductions from gross salary
             grossSalary -= totalLateDeductions;
