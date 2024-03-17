@@ -144,6 +144,7 @@ public class UpdatedMS2 {
             validInput = false;
             while (!validInput) {
                 try {
+                	System.out.println();
                     System.out.print("Enter the number of days worked in the month: ");
                     daysWorked = scanner.nextInt();
                     if (daysWorked < 0) {
@@ -192,12 +193,18 @@ public class UpdatedMS2 {
                 // Subtract 1 hour for unpaid lunch break
                 hoursWorked -= 1.0;
 
-                // Calculate late deductions
+             // Calculate late deductions
                 int gracePeriodMins = 10;
-                double lateDeductionPerHour = hourlyRates[index]; // Each hour late incurs the hourly rate as deduction
+                double lateDeductionPerHour = hourlyRates[index]; // Each hour late incurs the hourly rate as a deduction
                 double lateDeductions = 0.0;
-                if (loginTime.getTime() > dateFormat.parse("08:10").getTime()) { // Beyond 8:10 is considered late
-                    lateDeductions = lateDeductionPerHour;
+
+                // Calculate the number of minutes late
+                long minLate = (loginTime.getTime() - dateFormat.parse("08:00").getTime()) / (60 * 1000);
+
+                if (minLate > gracePeriodMins) { // Beyond the grace period is considered late
+                    // Calculate the number of hours late (rounded up)
+                    double hoursLate = Math.ceil((minLate - gracePeriodMins) / 60.0);
+                    lateDeductions = hoursLate * lateDeductionPerHour;
                 }
 
                 totalHoursWorked += hoursWorked;
@@ -288,7 +295,7 @@ public class UpdatedMS2 {
             // Ask the user if they want to calculate another employee's salary
             System.out.print("\nDo you want to calculate another employee's salary? (yes/no): ");
             String response = scanner.next();
-            if (!response.equalsIgnoreCase("yes")) {
+            if (!response.equalsIgnoreCase("yes")&& !response.equals("y")) {
                 System.out.println("Thank you for using the salary calculator.");
                 break; // Exit the loop if the user does not want to continue
             }
