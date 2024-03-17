@@ -139,7 +139,6 @@ public class UpdatedMS2 {
             System.out.println("Phone Number: " + phoneNumbers[index]);
             System.out.println("Position: " + positions[index]);
             System.out.println("Hourly Rate: " + hourlyRates[index]);
-
             // Ask for the number of days worked in the month
             int daysWorked = 0;
             validInput = false;
@@ -188,8 +187,8 @@ public class UpdatedMS2 {
                 }
 
                 // Calculate hours worked
-                long diffInMillies = logoutTime.getTime() - loginTime.getTime();
-                double hoursWorked = (double) diffInMillies / (60 * 60 * 1000);
+                long diffInMill = logoutTime.getTime() - loginTime.getTime();
+                double hoursWorked = (double) diffInMill / (60 * 60 * 1000);
                 // Subtract 1 hour for unpaid lunch break
                 hoursWorked -= 1.0;
 
