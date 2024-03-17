@@ -138,6 +138,7 @@ public class UpdatedMS2 {
             System.out.println("Address: " + addresses[index]);
             System.out.println("Phone Number: " + phoneNumbers[index]);
             System.out.println("Position: " + positions[index]);
+            System.out.println("Hourly Rate: " + hourlyRates[index]);
 
             // Ask for the number of days worked in the month
             int daysWorked = 0;
