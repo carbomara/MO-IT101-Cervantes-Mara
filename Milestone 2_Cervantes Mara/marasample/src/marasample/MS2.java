@@ -194,16 +194,16 @@ public class UpdatedMS2 {
                 hoursWorked -= 1.0;
 
              // Calculate late deductions
-                int gracePeriodMins = 10;
+                int graceperiod = 10;
                 double lateDeductionPerHour = hourlyRates[index]; // Each hour late incurs the hourly rate as a deduction
                 double lateDeductions = 0.0;
 
                 // Calculate the number of minutes late
                 long minLate = (loginTime.getTime() - dateFormat.parse("08:00").getTime()) / (60 * 1000);
 
-                if (minLate > gracePeriodMins) { // Beyond the grace period is considered late
+                if (minLate > graceperiod) { // Beyond the grace period is considered late
                     // Calculate the number of hours late (rounded up)
-                    double hoursLate = Math.ceil((minLate - gracePeriodMins) / 60.0);
+                    double hoursLate = Math.ceil((minLate - graceperiod) / 60.0);
                     lateDeductions = hoursLate * lateDeductionPerHour;
                 }
 
