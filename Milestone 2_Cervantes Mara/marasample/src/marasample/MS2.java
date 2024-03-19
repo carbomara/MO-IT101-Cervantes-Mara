@@ -1,9 +1,9 @@
 package marasample;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.text.ParseException; // is used to indicate problems encountered while parsing strings in date and time formatting
+import java.text.SimpleDateFormat; //  is used to format and parse dates in a specific pattern
+import java.util.Date; // is used to represent date and time objects
+import java.util.InputMismatchException; // is an exception that is thrown when a scanner's input does not match the pattern.
+import java.util.Scanner; // is used to get user input
 
 public class UpdatedMS2 {
 
