@@ -108,7 +108,7 @@ public class UpdatedMS2 {
         	    133.93, 313.51, 313.51, 313.51
         	};
 
-        while (true) { // Loop to calculate salary for multiple employees
+        while (true) { // Loop for entering employee ID
             // Prompt for employee ID
             int employeeID = 0;
             boolean validInput = false;
