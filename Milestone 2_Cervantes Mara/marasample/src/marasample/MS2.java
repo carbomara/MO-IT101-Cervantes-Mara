@@ -128,7 +128,7 @@ public class UpdatedMS2 {
                 }
             }
 
-            // Adjust for 0-based index arrays
+            
             int index = employeeID - 1;
 
             // Display the employee details
@@ -159,8 +159,8 @@ public class UpdatedMS2 {
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-            double totalHoursWorked = 0.0;
-            double totalLateDeductions = 0.0;
+            double totalhrswork = 0.0;
+            double totallatedeductions = 0.0;
             for (int day = 1; day <= daysWorked; day++) { // Loop through the days worked
                 System.out.println("\nDay " + day);
                 // Get login time
@@ -207,18 +207,18 @@ public class UpdatedMS2 {
                     lateDeductions = hoursLate * lateDeductionPerHour;
                 }
 
-                totalHoursWorked += hoursWorked;
-                totalLateDeductions += lateDeductions;
+                totalhrswork += hoursWorked;
+                totallatedeductions += lateDeductions;
 
                 System.out.printf("Hours Worked: %.2f\n", hoursWorked);
                 System.out.printf("Late Deduction/s: ₱%.2f\n", lateDeductions);
             }
 
             // Calculate gross salary
-            double grossSalary = hourlyRates[index] * totalHoursWorked;
+            double grossSalary = hourlyRates[index] * totalhrswork;
 
             // Deduct late deductions from gross salary
-            grossSalary -= totalLateDeductions;
+            grossSalary -= totallatedeductions;
 
             // Pag-IBIG contribution calculation
             double pagibigContribution = Math.min(grossSalary * 0.02, 100);
@@ -256,10 +256,10 @@ public class UpdatedMS2 {
             }
             // Now the variable 'contribution' holds the correct SSS contribution amount for the given 'salary'
             // Total deductions
-            double totalDeductions = pagibigContribution + philhealthContribution + sssContribution;
+            double OverallDeductions = pagibigContribution + philhealthContribution + sssContribution;
 
             // Withholding tax calculation (simplified example, please adjust according to the actual tax brackets)
-            double taxableIncome = grossSalary - totalDeductions;
+            double taxableIncome = grossSalary - OverallDeductions;
             double withholdingTax;
 
             // Determine the tax bracket and calculate accordingly
@@ -282,12 +282,12 @@ public class UpdatedMS2 {
 
             // Display results
             System.out.println("\nMonthly Summary:");
-            System.out.printf("Total Hours Worked: %.2f\n", totalHoursWorked);
+            System.out.printf("Total Hours Worked: %.2f\n", totalhrswork);
             System.out.printf("Gross Salary: ₱%.2f\n", grossSalary);
             System.out.printf("Pag-IBIG Contribution: ₱%.2f\n", pagibigContribution);
             System.out.printf("PhilHealth Contribution: ₱%.2f\n", philhealthContribution);
             System.out.printf("SSS Contribution: ₱%.2f\n", sssContribution);
-            System.out.printf("Total Deductions: ₱%.2f\n", totalDeductions);
+            System.out.printf("Total Deductions: ₱%.2f\n", OverallDeductions);
             System.out.printf("Taxable Income: ₱%.2f\n", taxableIncome);
             System.out.printf("Withholding Tax: ₱%.2f\n", withholdingTax);
             System.out.printf("Net Salary: ₱%.2f\n", netSalary);
@@ -304,3 +304,8 @@ public class UpdatedMS2 {
         scanner.close();
     }
 }
+/* MO-IT101 Computer Programming 1 - H1102
+
+Mara Cervantes
+
+ */
