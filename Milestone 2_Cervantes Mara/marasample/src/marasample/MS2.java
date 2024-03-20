@@ -1,4 +1,3 @@
-package marasample;
 import java.text.ParseException; // is used to indicate problems encountered while parsing strings in date and time formatting
 import java.text.SimpleDateFormat; //  is used to format and parse dates in a specific pattern
 import java.util.Date; // is used to represent date and time objects
@@ -108,7 +107,7 @@ public class UpdatedMS2 {
         	    133.93, 313.51, 313.51, 313.51
         	};
 
-        while (true) { // Loop for entering employee ID
+        while (true) { // Loop to calculate salary for multiple employees
             // Prompt for employee ID
             int employeeID = 0;
             boolean validInput = false;
@@ -214,8 +213,9 @@ public class UpdatedMS2 {
                 System.out.printf("Late Deduction/s: ₱%.2f\n", lateDeductions);
             }
 
-            // Calculate gross salary
-            double grossSalary = hourlyRates[index] * totalhrswork;
+         // Calculate gross salary
+            double grossSalary = hourlyRates[index] * totalhrswork;           
+            System.out.println("Gross Salary: " + grossSalary);
 
             // Deduct late deductions from gross salary
             grossSalary -= totallatedeductions;
@@ -230,7 +230,7 @@ public class UpdatedMS2 {
             } else if (grossSalary > 10000 && grossSalary <= 59999.99) {
                 philhealthContribution = (grossSalary * 0.03) / 2; // 3% of grossSalary, then divided by 2 for employee's share
             } else if (grossSalary >= 60000) {
-                philhealthContribution = 1800.0 / 2; // 900.0
+                philhealthContribution = 1800.0 / 2; // Cap the contribution at 1,800 if it exceeds this amount so it's 900 
             }
 
             double sssContribution = 135.0;
@@ -283,11 +283,11 @@ public class UpdatedMS2 {
             // Display results
             System.out.println("\nMonthly Summary:");
             System.out.printf("Total Hours Worked: %.2f\n", totalhrswork);
-            System.out.printf("Gross Salary: ₱%.2f\n", grossSalary);
+            System.out.printf("Gross Salary: ₱%.2f\n", grossSalary);    
             System.out.printf("Pag-IBIG Contribution: ₱%.2f\n", pagibigContribution);
             System.out.printf("PhilHealth Contribution: ₱%.2f\n", philhealthContribution);
             System.out.printf("SSS Contribution: ₱%.2f\n", sssContribution);
-            System.out.printf("Total Deductions: ₱%.2f\n", OverallDeductions);
+            System.out.printf("Total Deductions: ₱%.2f\n", OverallDeductions);          
             System.out.printf("Taxable Income: ₱%.2f\n", taxableIncome);
             System.out.printf("Withholding Tax: ₱%.2f\n", withholdingTax);
             System.out.printf("Net Salary: ₱%.2f\n", netSalary);
